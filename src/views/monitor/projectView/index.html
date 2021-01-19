@@ -1,0 +1,418 @@
+<template>
+  <div class="app-container">
+    <el-dropdown trigger="click">
+      <span class="el-dropdown-link">
+        <div class="restoreApplication">恢复应用</div>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item icon="el-icon-plus" >新建项目</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-circle-plus" @click="dialogFormVisible = true">新建项目群</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+    <div class="top">
+      <span class="title2">默认</span>
+      <span class="title1">创建时间</span>
+      <span class="inputSearch">
+      <el-input v-model="input" placeholder="请输入内容"></el-input>
+    </span>
+    </div>
+    <div>
+      <div>
+        <div>项目群</div>
+        <div class="container1">
+          <div class="container1_header">
+            <i class="el-icon-folder-opened icon1" ></i>
+            <span style="font-size: 14px">住宅</span>
+            <span style="    float: right; margin-right: 16px;">
+               <i class="el-icon-trophy-1 icon1"></i>
+            <i class="el-icon-star-on icon1"></i>
+                <el-dropdown trigger="click">
+      <span class="el-dropdown-link">
+      <i class="el-icon-s-tools icon1"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item icon="el-icon-plus">恢复应用</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-circle-plus">删除</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+            </span>
+          </div>
+          <div class="container1_body">
+            <img src="@/assets/404_images/404.png" class="imgItem">
+            <div  class="container1_body_content">
+              <div class="itemNum">项目数量</div>
+              <span class="number">16</span>个
+            </div>
+            <div>
+              <div class="itemNum">参建单位</div>
+              <span class="number">42</span>家
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear: both">
+        <div>项目</div>
+        <div class="container2">
+          <div class="container1_header">
+            <i class="el-icon-folder-opened icon1" ></i>
+            <span style="font-size: 14px">住宅</span>
+            <span style="    float: right; margin-right: 16px;">
+               <i class="el-icon-trophy-1 icon1"></i>
+            <i class="el-icon-star-on icon1"></i>
+                  <el-dropdown trigger="click">
+      <span class="el-dropdown-link">
+      <i class="el-icon-s-tools icon1"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item icon="el-icon-plus">恢复应用</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-circle-plus">删除</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+            </span>
+          </div>
+          <div class="container1_body">
+            <img src="@/assets/404_images/404.png" class="imgItem">
+            <div  class="container1_body_content">
+              <div class="itemNum2">计划开工时间：2020.06.06</div>
+            </div>
+            <div>
+              <div class="itemNum2">计划完工时间：2020.06.06</div>
+            </div>
+            <div  class="container1_body_content">
+              <div class="itemNum2">计&nbsp划&nbsp总&nbsp工&nbsp期：765天</div>
+            </div>
+            <div  class="container1_body_content">
+              <div class="itemNum2">计&nbsp划&nbsp总&nbsp工&nbsp期：2020.06.06</div>
+            </div>
+            <div>
+              <div class="itemNum2">已&nbsp开&nbsp工&nbsp天&nbsp数：200天</div>
+            </div>
+            <el-progress type="circle" :percentage="25" class="circleView"></el-progress>
+          </div>
+        </div>
+        <div class="container2">
+          <div class="container1_header">
+            <i class="el-icon-folder-opened icon1" ></i>
+            <span style="font-size: 14px">住宅</span>
+            <span style="    float: right; margin-right: 16px;">
+               <i class="el-icon-trophy-1 icon1"></i>
+            <i class="el-icon-star-on icon1"></i>
+                  <el-dropdown trigger="click">
+      <span class="el-dropdown-link">
+      <i class="el-icon-s-tools icon1"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item icon="el-icon-plus">恢复应用</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-circle-plus">删除</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+            </span>
+          </div>
+          <div class="container1_body">
+            <img src="@/assets/404_images/404.png" class="imgItem">
+            <div  class="container1_body_content">
+              <div class="itemNum2">计划开工时间：2020.06.06</div>
+            </div>
+            <div>
+              <div class="itemNum2">计划完工时间：2020.06.06</div>
+            </div>
+            <div  class="container1_body_content">
+              <div class="itemNum2">计&nbsp划&nbsp总&nbsp工&nbsp期：765天</div>
+            </div>
+            <div  class="container1_body_content">
+              <div class="itemNum2">计&nbsp划&nbsp总&nbsp工&nbsp期：2020.06.06</div>
+            </div>
+            <div>
+              <div class="itemNum2">已&nbsp开&nbsp工&nbsp天&nbsp数：200天</div>
+            </div>
+            <el-progress type="circle" :percentage="25" class="circleView"></el-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+</template>
+
+<script>
+    import { listQuality, getQuality, delQuality, addQuality, updateQuality, exportQuality } from "@/api/projectView/projectView.js";
+    export default {
+        name: "Quality",
+        data() {
+            return {
+                id:'',
+                name:'',
+                index:'',//用于修改
+                list:[
+                    { id:'1', name:'宝马', ctime:new Date()},
+                    { id:'2', name:'奥迪', ctime:new Date()},
+                    { id:'3', name:'大众', ctime:new Date()},
+                    { id:'4', name:'奔驰', ctime:new Date()}
+                ],
+                gridData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }],
+                dialogImageUrl: '',
+                dialogVisible: false,
+                disabled: false,
+                dialogTableVisible: false,
+                dialogFormVisible: false,
+                queryParams: {
+                    pageNum: 1,
+                    pageSize: 10,
+                    delFlag:'1'
+                },
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
+                formLabelWidth: '120px',
+                ruleForm: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
+                rules: {
+                    name: [
+                        { required: true, message: '请输入活动名称', trigger: 'blur' },
+                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    ],
+                    region: [
+                        { required: true, message: '请选择活动区域', trigger: 'change' }
+                    ],
+                    date1: [
+                        { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+                    ],
+                    date2: [
+                        { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+                    ],
+                    type: [
+                        { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
+                    ],
+                    resource: [
+                        { required: true, message: '请选择活动资源', trigger: 'change' }
+                    ],
+                    desc: [
+                        { required: true, message: '请填写活动形式', trigger: 'blur' }
+                    ]
+                }
+            };
+        },
+        created() {
+            this.getList();
+        },
+        methods: {
+            /** 查询质量管理模块列表 */
+            getList() {
+                this.loading = true;
+                listQuality(this.queryParams).then(response => {
+                    this.qualityList = response.rows;
+                    this.total = response.total;
+                    this.loading = false;
+                });
+            },
+            handleDialog(){
+                console.log(11111111)
+                this.dialogFormVisible=true
+            },
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            },
+            // 删除
+            del(id){
+                //根据id找索引
+                let index= this.list.findIndex(item =>{
+                    if (item.id==id){
+                        return true
+                    }
+                })
+                //删除数组元素
+                this.list.splice(index,1)
+            },
+            // 增加
+            add(){
+                this.list.push({id:this.id,name:this.name, ctime:new Date()})
+                this.id=this.name=''
+            },
+            handleRemove(file) {
+                console.log(file);
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+            handleDownload(file) {
+                console.log(file);
+            }
+        }
+    };
+</script>
+<style>
+  .imgItem{
+    width: 168px;
+    height: 168px;
+  }
+  .number{
+    font-size: 32px;
+    margin: 0 21px;
+    margin-left: 32px;
+    color: #333333;
+  }
+  .container1_header{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 24px;
+    box-shadow: 2px 2px 5px #d9d9d9;
+  }
+  .container1{
+    width: 308px;
+    height: 240px;
+    border: 1px solid #dddddd;
+    color: #666666;
+    box-shadow: 2px 2px 8px #d9d9d9;
+    margin:12px 0;
+    margin-right: 32px;
+    float: left;
+    background: #fff;
+  }
+  .container2{
+    width: 536px;
+    height: 240px;
+    border: 1px solid #dddddd;
+    color: #666666;
+    box-shadow: 2px 2px 8px #d9d9d9;
+    margin:12px 0;
+    margin-right: 32px;
+    float: left;
+    background: #fff;
+    position: relative;
+  }
+  .imgItem{
+    display: block;
+    margin-left: 16px;
+    float: left;
+  }
+  .itemNum{
+    margin-bottom: 13px;
+    font-size: 12px;
+  }
+  .itemNum2{
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .container1_body_content{
+    margin-top: 19px;
+    margin-bottom: 23px;
+  }
+  .icon1{
+    margin: 0 5px;
+  }
+  .title1{
+    margin: 0 12px;
+    color: #C0C4CC;
+    font-size: 14px;
+  }
+  .title2{
+    margin-right: 12px;
+  }
+  .inputSearch /deep/ .el-input--medium{
+    width: 20%;
+    margin-left: 12px;
+  }
+  .top{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+    margin-bottom: 6px;
+  }
+  .selectChoose .el-select--medium{
+    margin: 5px 15px;
+  }
+  .addItem{
+    text-align: center;
+    margin-top: 20px;
+  }
+  .bottomData{
+    text-align: center;
+  }
+  .bottomData1{
+    margin: 0 90px;
+  }
+  .bottomData{
+    background: #F0F2F5;
+    height: 42px;
+    line-height: 42px;
+  }
+  .constructionTitle{
+    font-size: 18px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    margin-top: 40px;
+    color: #303133;
+  }
+  .app-container /deep/ .el-dialog{
+    margin: 0;
+    float: right;
+    width: 55%;
+  }
+  .changeStuff /deep/.el-form-item__content{
+    width: 48%;
+  }
+  .selectChoose{
+    margin-left: 47px;
+  }
+  .circleView{
+    position: absolute;
+    top: 75px;
+    right: 20px;
+  }
+  .restoreApplication{
+    background: #13CE66;
+    margin-top: 5px;
+    height: 35px;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 2px 2px 8px #d9d9d9;
+    box-shadow: 2px 2px 8px #d9d9d9;
+    width: 80px;
+    margin-bottom: 15px;
+  }
+</style>
+
